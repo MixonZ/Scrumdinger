@@ -4,6 +4,8 @@
 //
 //  Created by Mikus Zarins on 24/04/2025.
 //
+//TODO: By https://developer.apple.com/tutorials/app-dev-training/updating-app-data end of section 1. Need to refactor
+
 
 import Foundation
 import SwiftUI
@@ -43,6 +45,17 @@ struct DetailView: View {
                     Label(attendee.name, systemImage: "person")
                 }
             }
+            Section(header: Text("History")) {
+                if scrum.history.isEmpty {
+                    Label("No meetings yet", systemImage: "calendar.badge.exclamationmark")
+                }
+                ForEach(scrum.history) { meeting in
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text(meeting.date, style: .date)
+                    }
+                }
+            }
         }
         .navigationTitle(scrum.title)
         .toolbar {
@@ -53,20 +66,10 @@ struct DetailView: View {
         }
         .sheet(isPresented: $isPresentingEditView) {
             NavigationStack {
-                DetailEditView(scrum: $editingScrum)
+                DetailEditView(scrum: $editingScrum, savedEdits: {dailyScrum in
+                scrum = editingScrum})
                     .navigationTitle(scrum.title)
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel") {
-                                isPresentingEditView = false
-                            }
-                        }
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("Done") {
-                                isPresentingEditView = false
-                            }
-                        }
-                    }
+                
             }
         }
     }
