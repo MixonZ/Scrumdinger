@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		55A06C582DC3803B0029EAB7 /* ThemeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55A06C572DC3803B0029EAB7 /* ThemeKit */; };
 		55A06C5D2DC5F56A0029EAB7 /* TimerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55A06C5C2DC5F56A0029EAB7 /* TimerKit */; };
+		55A06C662DC60BC00029EAB7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 55A06C652DC60BC00029EAB7 /* README.md */; };
+		55A06C672DC60BC00029EAB7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 55A06C642DC60BC00029EAB7 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5599EF8A2DC37F910003E53A /* Scrumdinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrumdinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55A06C642DC60BC00029EAB7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		55A06C652DC60BC00029EAB7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -41,6 +45,8 @@
 			children = (
 				5599EF8C2DC37F910003E53A /* Scrumdinger */,
 				5599EF8B2DC37F910003E53A /* Products */,
+				55A06C642DC60BC00029EAB7 /* .gitignore */,
+				55A06C652DC60BC00029EAB7 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +128,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A06C662DC60BC00029EAB7 /* README.md in Resources */,
+				55A06C672DC60BC00029EAB7 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
