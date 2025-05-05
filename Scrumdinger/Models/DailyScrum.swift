@@ -7,10 +7,14 @@
 
 import Foundation
 import ThemeKit
+import SwiftData
 
-struct DailyScrum: Identifiable {
+@Model
+class DailyScrum: Identifiable {
     var id: UUID
     var title: String
+    
+    @Relationship(deleteRule: .cascade, inverse: \Attendee.dailyScrum)
     var attendees: [Attendee]
     var lengthInMinutes: Int
     var lengthInMinutesAsDouble: Double {
@@ -34,17 +38,6 @@ struct DailyScrum: Identifiable {
 }
 
 extension DailyScrum {
-    struct Attendee: Identifiable {
-        var id: UUID
-        var name: String
-        
-        init(id: UUID = UUID(), name: String) {
-            self.id = id
-            self.name = name
-        }
-        
-        
-    }
     
     static var emptyScrum: DailyScrum {
         DailyScrum(title: "", attendees: [], lengthInMinutes: 5, theme: .sky)
