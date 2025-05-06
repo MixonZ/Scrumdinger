@@ -7,7 +7,7 @@
 
 import SwiftUI
 import ThemeKit
-import _SwiftData_SwiftUI
+import SwiftData
 
 struct DetailEditView: View {
     let scrum: DailyScrum
@@ -17,9 +17,10 @@ struct DetailEditView: View {
     @State private var lengthInMinutesAsDouble: Double
     @State private var attendees: [Attendee]
     @State private var theme: Theme
+    @State private var errorWrapper: ErrorWrapper?
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
-
+    
     private let isCreatingScrum: Bool
     
     init(scrum: DailyScrum?) {
@@ -84,14 +85,23 @@ struct DetailEditView: View {
             }
             ToolbarItem(placement: .confirmationAction){
                 Button("Done"){
-                    savedEdits()
-                    dismiss()
+                    do{
+                        try savedEdits()
+                        dismiss()
+                    } catch {
+                        errorWrapper = ErrorWrapper(error: error, guidence: "Daily scrum was not recorded. Try again later.")
+                    }
                 }
             }
         }
+        .sheet(item: $errorWrapper){
+            dismiss()
+        } content: { errorWrapper in
+            ErrorView(errorWrapper: errorWrapper)
+        }
     }
     
-    func savedEdits() {
+    func savedEdits() throws {
         scrum.title = title
         scrum.lengthInMinutesAsDouble = lengthInMinutesAsDouble
         scrum.attendees = attendees
@@ -101,7 +111,7 @@ struct DetailEditView: View {
             context.insert(scrum)
         }
         
-        try? context.save()
+        try context.save()
     }
 }
 
